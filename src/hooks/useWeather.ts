@@ -1,17 +1,18 @@
 import axios from "axios"
-import {z} from 'zod'
+import {object, string, number, Output, parse} from 'valibot'
 import type {SearchType} from "../types"
 
-// Zod - Esquema zod
-const Weather = z.object({
-    name: z.string(),
-    main: z.object({
-        temp: z.number(),
-        temp_max: z.number(),
-        temp_min: z.number()
+// Valibot esquema
+const WeatherSchema = object({
+    name: string(),
+    main: object({
+        temp: number(),
+        temp_max: number(),
+        temp_min: number()
     })
 })
-type Weather = z.infer<typeof Weather>
+
+type Weather = Output<typeof WeatherSchema>
 
 export default function useWeather() {
     const fetchWeather = async(search: SearchType) => {
@@ -25,11 +26,9 @@ export default function useWeather() {
 
             const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`
             const {data: weatherResult} = await axios(weatherUrl)
-            const result = Weather.safeParse(weatherResult) // compara esquema con propiedades respuesta api (true o false)
-            
-            if(result.success) {
-                console.log(result.data.name)
-                console.log(result.data.main.temp)
+            const result = parse(WeatherSchema,  weatherResult)
+            if(result) {
+                console.log(result)
             }
         } catch (error) {
             console.log(error)
