@@ -3,7 +3,8 @@
     flex-direction: column;
     gap: 2rem;
 }
-.form input[type="text"], select {
+.form input[type="text"], 
+.form select {
     padding: 1rem;
     background-color: transparent;
     border: .3rem solid var(--white);
@@ -11,7 +12,17 @@
     font-size: 1.8rem;
     font-weight: 400;
     border-radius: 1rem;
+
 }
+.form select {
+    color: var(--white);
+    background-color: var(--black);
+}
+
+.option {
+    background-color: transparent;
+}
+
 .field::placeholder {
     color: var(--white);
 }
@@ -25,5 +36,4 @@
     border-radius: 1rem;
     margin-top: 1.5rem;
     cursor: pointer;
-
 }
