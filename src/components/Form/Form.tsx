@@ -5,7 +5,7 @@ import type {SearchType} from "../../types"
 import Alert from "../Alert/Alert"
 
 type FormProps = {
-    fetchWeather: () => void
+    fetchWeather: (search: SearchType) => Promise<void>
 
 }
 export default function Form({fetchWeather}: FormProps) {
@@ -28,7 +28,7 @@ export default function Form({fetchWeather}: FormProps) {
             setAlert('Todos los campos son obligatorios')
             return
         }
-        fetchWeather()
+        fetchWeather(search)
     }
     return (
         <form 
