@@ -11,7 +11,7 @@ export default function App() {
         <>
             <h1 className={styles.title}>Buscador de Clima</h1>
             <div className={styles.container}>
-                <Form fetchWeather={fetchWeather} notFound={notFound}/>
+                <Form fetchWeather={fetchWeather}/>
                 {loading && <Spinner />}
                 {hasWeatherData && <WeatherDetail weather={weather} />}
                 {notFound && <Alert>Ciudad No Encontrada</Alert>}

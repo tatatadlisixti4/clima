@@ -41,6 +41,7 @@ export default function useWeather() {
 
             // Comprobar si existe
             if(!data[0]) {
+                //Resetear state formlario y notFound
                 setNotFound(true)
                 return
             }

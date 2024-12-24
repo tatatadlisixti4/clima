@@ -6,9 +6,8 @@ import Alert from "../Alert/Alert"
 
 type FormProps = {
     fetchWeather: (search: SearchType) => Promise<void>
-    notFound: boolean
 }
-export default function Form({fetchWeather, notFound}: FormProps) {
+export default function Form({fetchWeather}: FormProps) {
     const [search, setSearch] = useState<SearchType>({
         city: '',
         country: ''
