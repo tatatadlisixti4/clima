@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useMemo} from 'react'
 import type {SearchType} from "../types"
 import {z} from 'zod'
 import axios from "axios"
@@ -12,6 +12,7 @@ const Weather = z.object({
         temp_min: z.number()
     })
 })
+
 export type Weather = z.infer<typeof Weather> 
 
 export default function useWeather() {
@@ -46,8 +47,12 @@ export default function useWeather() {
             
         }
     }
+
+    const hasWeatherData = useMemo(() => weather.name, [weather])
+
     return {
         weather,
-        fetchWeather
+        fetchWeather,
+        hasWeatherData
     }
 }
